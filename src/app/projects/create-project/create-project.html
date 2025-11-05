@@ -1,0 +1,85 @@
+<!-- 🧱 Centering Wrapper -->
+<div class="create-project-page">
+  <section class="create-project-form" aria-labelledby="create-title">
+    <h2 id="create-title">Create New Project</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Project Name -->
+      <div class="field">
+        <label for="name">Project Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Enter project name"
+          required
+        />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <p class="error" role="alert">Project name is required (min 3 chars).</p>
+        }
+      </div>
+
+      <!-- Project Description -->
+      <div class="field">
+        <label for="desc">Description</label>
+        <textarea
+          id="desc"
+          formControlName="description"
+          rows="3"
+          placeholder="Enter project description"
+          required
+        ></textarea>
+        @if (form.controls.description.invalid && form.controls.description.touched) {
+          <p class="error" role="alert">Description is required (min 5 chars).</p>
+        }
+      </div>
+
+      <!-- Task List -->
+      <fieldset class="tasks">
+        <legend>Associated Tasks</legend>
+
+        <div class="task-inputs">
+          <input
+            type="text"
+            placeholder="Task title"
+            [value]="newTaskTitle()"
+            (input)="newTaskTitle.set(($any($event.target).value))"
+          />
+
+          <select
+            [value]="newTaskStatus()"
+            (change)="newTaskStatus.set($any($event.target).value)"
+          >
+            <option value="todo">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+
+          <button type="button" (click)="addTask()">➕ Add</button>
+        </div>
+
+        <ul class="task-list" role="list">
+          @for (task of tasks(); track $index) {
+            <li>
+              <span>{{ task.title }}</span>
+              <span class="status">{{ task.status }}</span>
+              <button
+                type="button"
+                class="remove"
+                (click)="removeTask($index)"
+                aria-label="Remove task"
+              >
+                ✖
+              </button>
+            </li>
+          }
+        </ul>
+      </fieldset>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="form.invalid">
+        ✅ Create Project
+      </button>
+    </form>
+  </section>
+</div>

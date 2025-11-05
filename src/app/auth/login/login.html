@@ -1,0 +1,45 @@
+<div class="login-page">
+  <section class="login-card" aria-labelledby="login-title">
+    <h2 id="login-title">Welcome Back 👋</h2>
+    <p class="subtitle">Sign in to manage your projects efficiently</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Email -->
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+          required
+        />
+        @if (loginForm.controls.email.invalid && loginForm.controls.email.touched) {
+          <p class="error" role="alert">Please enter a valid email address.</p>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          formControlName="password"
+          required
+        />
+        @if (loginForm.controls.password.invalid && loginForm.controls.password.touched) {
+          <p class="error" role="alert">Password must be at least 6 characters long.</p>
+        }
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" [disabled]="loginForm.invalid">🔐 Login</button>
+    </form>
+
+    <!-- <footer class="footer-text">
+      <p>Don’t have an account? <a href="#">Sign up</a></p>
+    </footer> -->
+  </section>
+</div>

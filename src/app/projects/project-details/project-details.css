@@ -1,0 +1,337 @@
+:root {
+  /* 🎨 Color palette */
+  --color-bg: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-border: #dce3ed;
+  --color-shadow: rgba(0, 0, 0, 0.08);
+
+  --color-primary: #1976d2;
+  --color-accent: #1565c0;
+  --color-todo: #f44336;
+  --color-progress: #ff9800;
+  --color-done: #4caf50;
+}
+
+/* General Page Styling */
+.project-details {
+  background: linear-gradient(135deg, #e8f0fe, #f5f7fa);
+  min-height: 100vh;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.project-details h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.project-details .desc {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* =============================
+   🧭 Toolbar
+============================= */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  background: #e3f2fd;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #bbdefb;
+  box-shadow: 0 2px 6px var(--color-shadow);
+  transition: all 0.3s ease;
+}
+
+.toolbar:hover {
+  background: #e0f0ff;
+}
+
+.toolbar label {
+  font-weight: 600;
+  color: #0d47a1;
+  margin-right: 0.5rem;
+}
+
+.toolbar select {
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #90caf9;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toolbar select:hover,
+.toolbar select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+/* Task List */
+.task-list li {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 0.85rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.task-list li:hover {
+  border-color: #90caf9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(25, 118, 210, 0.15);
+}
+
+/* 🟢 Color indicators by status */
+.task-list li[data-status='todo'] {
+  border-left: 6px solid var(--color-todo);
+}
+.task-list li[data-status='in-progress'] {
+  border-left: 6px solid var(--color-progress);
+}
+.task-list li[data-status='done'] {
+  border-left: 6px solid var(--color-done);
+}
+
+.task-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-info strong {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.task-desc {
+  color: #666;
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.status {
+  text-transform: capitalize;
+  font-weight: 700;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 0.3rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+}
+
+ /* Task Buttons */
+.task-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.task-buttons button {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px var(--color-shadow);
+}
+
+/* ✏️ Edit */
+.task-buttons button:first-child {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  color: #ef6c00;
+  border-color: #ffcc80;
+}
+.task-buttons button:first-child:hover {
+  background: linear-gradient(135deg, #ffe0b2, #ffd54f);
+  transform: translateY(-2px);
+}
+
+/* 🗑️ Delete */
+.task-buttons button:last-child {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+.task-buttons button:last-child:hover {
+  background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
+  transform: translateY(-2px);
+}
+
+/* Add / Edit Task Form */
+.task-form {
+  background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #bbdefb;
+  margin-top: 0.75rem;
+  box-shadow: 0 4px 10px var(--color-shadow);
+  animation: fadeIn 0.3s ease;
+}
+
+.task-form.edit {
+  background: linear-gradient(135deg, #fffde7, #fff8e1);
+  border-color: #ffecb3;
+}
+
+.task-form h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #0d47a1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+input,
+textarea {
+  font: inherit;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.4);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+button.cancel {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  color: #000;
+  transition: all 0.3s ease;
+}
+button.cancel:hover {
+  background: #eeeeee;
+}
+
+button[type='submit'] {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 2px 6px var(--color-shadow);
+  transition: all 0.3s ease;
+}
+button[type='submit']:hover {
+  background: linear-gradient(135deg, #1e88e5, #0d47a1);
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add Task & Back Buttons */
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+/* ➕ Add Task button */
+.task-actions button {
+  background: linear-gradient(135deg, #43a047, #388e3c); /* green gradient */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.7rem 1.25rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.25);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.task-actions button:hover {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(56, 142, 60, 0.3);
+}
+
+.task-actions button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(56, 142, 60, 0.2);
+}
+
+
+   /* ⬅ Back to Dashboard Button */
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #64b5f6, #1976d2);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.25);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.back:hover {
+  background: linear-gradient(135deg, #42a5f5, #1565c0);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(21, 101, 192, 0.3);
+}
+
+.back:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(21, 101, 192, 0.25);
+}

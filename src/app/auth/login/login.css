@@ -1,0 +1,145 @@
+:root {
+  --color-primary: #1976d2;
+  --color-accent: #1565c0;
+  --color-bg: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+  --color-surface: #ffffff;
+  --color-border: #d0d7e1;
+  --color-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* Page layout */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-bg);
+  padding: 2rem;
+}
+
+/* Card styling */
+.login-card {
+  /* 🎨 Background: soft gradient and white surface */
+  background: linear-gradient(145deg, #ffffff, #f1f5fb);
+  border: 2px solid #d6e4f0;
+  border-radius: 1rem;
+
+  /* 💫 Depth and layout */
+  box-shadow: 0 8px 24px rgba(25, 118, 210, 0.15),
+              0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem 2rem;
+  max-width: 24rem;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+
+  /* Smooth hover lift */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(25, 118, 210, 0.2),
+              0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Form fields */
+.field {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cfd8dc;
+  background: #fafafa;
+  font: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+  outline: none;
+}
+
+/* Submit button */
+button[type='submit'] {
+  background: linear-gradient(135deg, #1e88e5, #0d47a1);
+  color: black;
+  border: none;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.25);
+  transition: all 0.3s ease;
+}
+
+button[type='submit']:hover {
+  background: linear-gradient(135deg, #1e88e5, #0d47a1);
+  transform: translateY(-2px);
+}
+
+button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Footer */
+.footer-text {
+  margin-top: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer-text a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-text a:hover {
+  color: var(--color-accent);
+}
+
+/* Validation Errors */
+.error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

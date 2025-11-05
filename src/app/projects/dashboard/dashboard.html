@@ -1,0 +1,81 @@
+<section class="dashboard" aria-labelledby="dashboard-title">
+    <header class="dashboard-header">
+        <h1 id="dashboard-title">Project Dashboard</h1>
+        <p class="subtitle">Overview of all projects and task statuses</p>
+
+        <button class="logout-btn" (click)="logout()" aria-label="Logout">
+            🚪 Logout
+        </button>
+    </header>
+
+    <!-- Overall summary -->
+    <section class="summary" aria-label="Overall Task Summary">
+        <h2>Overall Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-card todo">
+                <h3>To Do</h3>
+                <p class="count">{{ totals().todo }}</p>
+            </div>
+            <div class="summary-card in-progress">
+                <h3>In Progress</h3>
+                <p class="count">{{ totals().inProgress }}</p>
+            </div>
+            <div class="summary-card done">
+                <h3>Done</h3>
+                <p class="count">{{ totals().done }}</p>
+            </div>
+            <div class="summary-card total">
+                <h3>Total</h3>
+                <p class="count">{{ totals().total }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Project Button -->
+    <div class="create-project">
+        <button (click)="onCreateProject()" aria-label="Create new project">
+            ➕ Create Project
+        </button>
+    </div>
+
+    <!-- Projects list -->
+    <section aria-label="Projects">
+        @if (projectSummaries().length > 0) {
+        <ul class="projects" role="list">
+            @for (project of projectSummaries(); track project.id) {
+            <li class="project-card" tabindex="0">
+                <header class="project-header">
+                    <div>
+                        <h2 id="project-{{ project.id }}">{{ project.name }}</h2>
+                        <p>{{ project.description }}</p>
+                    </div>
+                    <div class="project-total">
+                        <span>{{ project.total }}</span> Tasks
+                    </div>
+                </header>
+
+                <div class="stats" aria-label="Task Summary">
+                    <div><span class="dot todo"></span> {{ project.todo }} To Do</div>
+                    <div><span class="dot in-progress"></span> {{ project.inProgress }} In Progress</div>
+                    <div><span class="dot done"></span> {{ project.done }} Done</div>
+                </div>
+
+                <div class="actions" aria-label="Project actions">
+                    <button (click)="onViewDetails(project.id)" aria-label="View details of {{ project.name }}">
+                        👁️ Details
+                    </button>
+                    <button (click)="onEditProject(project.id)" aria-label="Edit {{ project.name }}">
+                        ✏️ Update
+                    </button>
+                    <button (click)="onDeleteProject(project.id)" aria-label="Delete task from {{ project.name }}">
+                        🗑️ Delete
+                    </button>
+                </div>
+            </li>
+            }
+        </ul>
+        } @else {
+        <p>No projects available.</p>
+        }
+    </section>
+</section>

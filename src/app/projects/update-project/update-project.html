@@ -1,0 +1,35 @@
+<section class="edit-project" aria-labelledby="edit-title">
+  @if (project) {
+    <h1 id="edit-title">Edit Project</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label for="name">Project Name</label>
+        <input id="name" type="text" formControlName="name" placeholder="Enter project name" />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <p class="error">Project name is required (min 3 chars).</p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="desc">Description</label>
+        <textarea
+          id="desc"
+          formControlName="description"
+          rows="3"
+          placeholder="Enter project description"
+        ></textarea>
+        @if (form.controls.description.invalid && form.controls.description.touched) {
+          <p class="error">Description is required (min 5 chars).</p>
+        }
+      </div>
+
+      <div class="buttons">
+        <button type="submit" [disabled]="form.invalid">💾 Save Changes</button>
+        <button type="button" class="cancel" (click)="cancel()">✖ Cancel</button>
+      </div>
+    </form>
+  } @else {
+    <p>Project not found.</p>
+  }
+</section>

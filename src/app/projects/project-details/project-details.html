@@ -1,0 +1,104 @@
+<section class="project-details" aria-labelledby="project-title">
+  @if (project()) {
+    <h1 id="project-title">{{ project()!.name }}</h1>
+    <p class="desc">{{ project()!.description }}</p>
+
+    <!-- Add Task Button -->
+    <div class="task-actions">
+      <button (click)="toggleAddTaskForm()">➕ Add Task</button>
+    </div>
+
+    <!-- Add Task Form -->
+    @if (showAddForm()) {
+      <form class="task-form" [formGroup]="taskForm" (ngSubmit)="onSubmitTask()">
+        <h3>Add New Task</h3>
+        <div class="field">
+          <label for="title">Task Title</label>
+          <input id="title" type="text" formControlName="title" placeholder="Enter task title" />
+        </div>
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3" formControlName="description" placeholder="Enter task description"></textarea>
+        </div>
+        <div class="field">
+          <label for="dueDate">Due Date</label>
+          <input id="dueDate" type="date" formControlName="dueDate" />
+        </div>
+        <div class="actions">
+          <button type="submit" [disabled]="taskForm.invalid">✅ Add Task</button>
+          <button type="button" class="cancel" (click)="toggleAddTaskForm()">✖ Cancel</button>
+        </div>
+      </form>
+    }
+
+    <!-- 🔹 Filter & Sort Toolbar -->
+    <div class="toolbar">
+      <div class="filter">
+        <label>Status:</label>
+        <select #statusFilter (change)="onFilterChange(statusFilter.value)">
+          <option value="all">All</option>
+          <option value="todo">To Do</option>
+          <option value="in-progress">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+
+      <div class="sort">
+        <label>Sort by Due Date:</label>
+        <select #sortSelect (change)="onSortChange(sortSelect.value)">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <h2>Tasks</h2>
+    <ul class="task-list">
+      @for (task of filteredAndSortedTasks(); track task.id) {
+        <li>
+          <div class="task-info">
+            <div>
+              <strong>{{ task.title }}</strong>
+              <p class="task-desc">{{ task.description }}</p>
+              <small>📅 {{ task.dueDate | date:'mediumDate' }}</small>
+            </div>
+            <span class="status">{{ task.status }}</span>
+          </div>
+
+          <div class="task-buttons">
+            <button (click)="openEditForm(task)">✏️ Edit</button>
+            <button (click)="onDeleteTask(task.id)">🗑️ Delete</button>
+          </div>
+
+          <!-- Inline edit form -->
+          @if (editingTask() && editingTask()?.id === task.id) {
+            <form class="task-form edit" [formGroup]="editTaskForm" (ngSubmit)="onUpdateTask(task.id)">
+              <h3>Edit Task</h3>
+              <div class="field">
+                <label>Title</label>
+                <input type="text" formControlName="title" />
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea rows="3" formControlName="description"></textarea>
+              </div>
+              <div class="field">
+                <label>Due Date</label>
+                <input type="date" formControlName="dueDate" />
+              </div>
+              <div class="actions">
+                <button type="submit" [disabled]="editTaskForm.invalid">💾 Save</button>
+                <button type="button" class="cancel" (click)="cancelEdit()">✖ Cancel</button>
+              </div>
+            </form>
+          }
+        </li>
+      }
+    </ul>
+
+    <button class="back" (click)="goBack()">⬅ Back to Dashboard</button>
+  } @else {
+    <p>Project not found.</p>
+  }
+</section>

@@ -1,0 +1,154 @@
+/* 🌈 Page layout */
+.create-project-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+  padding: 2rem;
+}
+
+/* 🧩 Form styling */
+.create-project-form {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #d0d7e1);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  max-width: 32rem;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeIn 0.3s ease;
+}
+
+/* 🏷️ Heading */
+h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--color-primary, #1976d2);
+}
+
+/* 🧱 Field styles */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cfd8dc;
+  background: #fafafa;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary, #1976d2);
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* 🎛️ Buttons */
+button {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+button[type='submit'] {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  color: #fff;
+  width: 100%;
+  margin-top: 1rem;
+  box-shadow: 0 3px 6px rgba(25, 118, 210, 0.2);
+}
+
+button[type='submit']:hover {
+  background: linear-gradient(135deg, #1e88e5, #0d47a1);
+  transform: translateY(-2px);
+}
+
+button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 🗂️ Task list */
+.task-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-list li {
+  background: #f8f9fb;
+  border: 1px solid #d6e4f0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list .status {
+  font-size: 0.875rem;
+  color: #555;
+  text-transform: capitalize;
+}
+
+.task-list .remove {
+  background: transparent;
+  border: none;
+  color: #c62828;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.task-list .remove:hover {
+  color: #b71c1c;
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
